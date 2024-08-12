@@ -1,13 +1,13 @@
 * CompStats cheatsheet
-Cheatsheet for the course /Computational Statistics (Spring 2022)/ read by N. Meinshausen.
+Cheatsheet for the course /Computational Statistics (Spring 2024)/ read by J. Peters.
 
-This if a fork of [[https://github.com/RomeoV/comp-stats-cheat-sheet][this cheatsheet]].
+This if a fork of [[https://github.com/fhehli/comp-stats-cheatsheet][this cheatsheet]].
 
 *If you find any errors or you want to improve something, feel free to open a Pull Request.*
 
 ** Building with Overleaf
 
-I used the GitHub integration provided by [[overleaf.com][Overleaf]] to import this repository
+I used the GitHub integration provided by [[https://overleaf.com][Overleaf]] to import this repository
 into an Overleaf project. Overleaf then takes care of everything you need and you can
 compile the document easily without needing to install anything locally.
 
@@ -21,7 +21,7 @@ $ pdflatex --version
 pdfTeX 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) [...]
 $ pygmentize -V
 Pygments version 2.9.0 [...]
-$ git clone --recursive git@github.com:RomeoV/comp-stats-cheat-sheet.git
+$ git clone --recursive git@github.com:ib31iat/comp-stats-cheatsheet.git
 $ pdflatex -shell-escape formulary.tex
 #+END_SRC
 Sometimes the first run of ~pdflatex~ fails with error ~LaTeX Error: Can be used only in preamble.~
