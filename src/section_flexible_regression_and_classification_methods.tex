@@ -1,4 +1,4 @@
-\section{Flexible regression and classification methods}\label{sec:flexible_regression_and_classification_methods}
+\section{\Large Flexible regression and classification methods}\label{sec:flexible_regression_and_classification_methods}
 We fight the \emph{curse of dimensionality} by making some structural assumptions (although staying with methods $g(\cdot): \mathbb{R}^p \to \mathbb{R}$ of nonparametric nature).
 \subsection{Additive models}%
 \label{sub:additive_models}
@@ -26,7 +26,7 @@ We fight the \emph{curse of dimensionality} by making some structural assumption
 
   \begin{mintlinebox}{R}
     fit <- gam(Y ~ s(x1) + s(x2) + ..., data=data)
-    plot(fit, pages=1, shade=TRUE)
+    plot(fit, pages=1, shade=TRUE) # show effect predictor
     sfsmisc::TA.plot(fit, labels="o")
   \end{mintlinebox}
 \end{sectionbox}
@@ -102,6 +102,7 @@ We fight the \emph{curse of dimensionality} by making some structural assumption
 \label{sub:ridge_and_lasso}
 Trade-off between $||\beta||_1$ and $||\beta||_2$ regularization, i.e. $L(\lambda_1, \lambda_2, \vec{\beta})=||\vec{Y}-X\vec{\beta}||_2^2 + (1-\alpha)/2||\vec{\beta}||_2^2+\alpha||\vec{\beta}||_1$.
 $\alpha=1 \Leftrightarrow \lambda_2=1$ means full $L_2$-regularization, i.e.\ \emph{Ridge}, otherwise \emph{LASSO}.
+Limited parameter size $\rightarrow$ reduced variance
 
 \begin{mintlinebox}{R}
   ridge <- glmnet(x.train, y.train, lambda=100, alpha=1)
@@ -110,4 +111,5 @@ $\alpha=1 \Leftrightarrow \lambda_2=1$ means full $L_2$-regularization, i.e.\ \e
   mean((predict(ridge.cv, newx=x.test, s="lambda.min") - y.test)^2)
   lasso.cv <- cv.glmnet(x.train, y.train, lambda=grid.lambda, alpha=1, type.measure="mse")
   mean((predict(lasso.cv, newx=x.test, s="lambda.min") - y.test)^2) 
+  length(which(beta[2:..]!=0) # num non-zero predictors
 \end{mintlinebox}

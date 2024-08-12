@@ -1,8 +1,9 @@
 \section{Linear Regression}\label{sec:multiple_linear_regression}
 \subsection{The Linear Model}\label{subsec:the_linear_model}
 \begin{sectionbox}\nospacing{}
-  Assume $Y_i = x_{i}^{\top}\beta + \epsilon_{i}$ or $Y = X \beta + \epsilon$ with $X \in \mathbb{R}^{n \times p}; (n \geq p)$ and $\mathbb{E}[\epsilon_{i}]=0, Var(\epsilon_{i}) = \sigma^{2}$.
+  Assume $Y_i = x_{i}^{\top}\beta + \epsilon_{i}$ or $Y = X \beta + \epsilon$ with $X \in \mathbb{R}^{n \times p}, \beta \in \mathbb{R}^{p \times 1}; (n \geq p)$ and $\mathbb{E}[\epsilon_{i}]=0, Var(\epsilon_{i}) = \sigma^{2}$.
   $X$ is often augmented with $(1_{N\times 1})$ to use $\beta_{1}$ as bias.
+  $df=n - p [-\text{intercept}]$
 \end{sectionbox}
 \subsection{Least Squares Method}\label{subsec:least_squares_method}
 \begin{sectionbox}\nospacing{}
@@ -41,12 +42,12 @@
 \subsection{Tests and Confidence Regions}\label{subsec:tests_and_confidence_regions}
 \begin{sectionbox}[T-test]\nospacing{}
   Assume linear model with Gaussian errors (or ``large enough'' sample size), s.t. $\hat{\vec{\beta}} \sim \mathcal{N}_{p}\left(\vec{\beta}, \sigma^{2}{(X^{\top}X)}^{-1}\right)$ is normally distributed.
-  Then we can test the null-hypothesis $H_{0,j}: \beta_{j = 0}$ against $H_{A,j}: \beta_{j \neq 0}$:
+  Then we can test the null-hypothesis $H_{0,j}: \beta_{j} = 0$ against $H_{A,j}: \beta_{j} \neq 0$:
   \[\frac{\hat \beta_{j}}{\sqrt{\sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}}} \sim \mathcal{N}(0,1) \Rightarrow  T_{j} = \frac{\hat \beta_{j}}{\sqrt{\hat \sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}}} \sim t_{n-p}\ \] under the null-hypothesis $H_{0,j}$. Unknown $\sigma^{2}$ is replaced by $\hat \sigma^{2}$. Note that $t_{n-p} \approx \mathcal{N}$.
   An individual t-test for $H_{0,j}$ gives the effect of $\beta_{j}$ after subtracting the linear effect of all $\beta_{i\neq j}$.
   Note that in \verb!summary.lm!, the term \emph{Std. Error} is $\sqrt{\hat \sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}} = \sqrt{\hat{Var}(\hat \beta_{j})}$. Finally, we can also build a confidence interval using $\hat \beta_{j} \pm \sqrt{\hat \sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}} \cdot t_{n-p;1-\alpha/2}$.
 \begin{mintlinebox}{R}
-  confint(fit, level=0.95)
+  confint(fit,level=0.95) # predict.lm(fit, ndata, interval=)
 \end{mintlinebox}
 \end{sectionbox}
 
@@ -62,10 +63,30 @@
   anova(fit.part, fit.full)
 \end{mintlinebox}
 \end{sectionbox}
+\begin{notebox}[ANalysis Of VAriance (ANOVA) Table]\nospacing{}
+    \begin{multicols}{2}
+        \begin{center}
+            \begin{tabular}{ c | c c}
+             & sum sq. & df \\
+             \hline
+             Reg. & $\lVert \hat{Y} -  \bar{Y} \rVert^2$ & p-1  \\ 
+             Error & $\lVert Y -  \hat{Y} \rVert^2$ & n-p \\
+             \hline
+             Total & $\lVert Y -  \bar{Y} \rVert^2$ & n-1    
+            \end{tabular}
+        \end{center}
+    \columnbreak
+      \begin{enumeratenosep}[label=\roman*]
+        \item msq: $\sfrac{sum\ sq.}{df}$
+        \item RSE: $\sqrt{MSE}$
+        \item Adjusted $R^2$: $\sfrac{R^2\cdot (n-1)}{df}$
+      \end{enumeratenosep}
+    \end{multicols}
+\end{notebox}
 
 \subsection{Checking Model Assumptions}\label{subsec:checking_model_assumptions}
 \begin{sectionbox}[Tukey-Anscombe Plot]\nospacing{}
-  Error should fluctuate randomly. If error increases linearly, do log-transform $\vec{Y} \mapsto \log{\vec{Y}}$. If error increases with $\sqrt{Y}$, do a square-root-transform $\vec{Y} \mapsto \sqrt{\vec{Y}}$.
+  Error should fluctuate randomly. Error increases linearly: log-transform $\vec{Y} \mapsto \log{\vec{Y}}$. Error increases with $\sqrt{Y}$: square-root-transform $\vec{Y} \mapsto \sqrt{\vec{Y}}$. Error has parabolic shape: add quadratic term. Error is groups: they have different \textit{Variance}.
   \begin{mintlinebox}{R}
     plot(fit, which=1) # Tukey-Anscombe plot
   \end{mintlinebox}
@@ -75,15 +96,21 @@
   If assumption holds, get straight line with intercept $\mu$ and slope $\sigma$.
   Z-shape: long-tailed distr.; Curved: skewed distr.
   \begin{mintlinebox}{R}
-    plot(fit, which=2) # QQ-plot
+    plot(fit, which=2) # QQ-plot (qqnorm, qqline)
   \end{mintlinebox}
 \end{sectionbox}
+\begin{notebox}\nospacing{}
+  \begin{enumeratenosep}[label=\roman*]
+    \item Scale Location (\texttt{which=3}): should look random
+    \item Cook dist (\texttt{which=4}): impact of sample on fit
+  \end{enumeratenosep}
+\end{notebox}
 
 \subsection{Model Selection}\label{subsec:model_selection}
 \begin{sectionbox}\nospacing{}
   Assume again $\mathbb{E}[\epsilon_{i}] = 0, Var(\epsilon_{i} = \sigma^{2})$.
-  We need to address \emph{bias-variance trade-off}.
-  Bias is defined as $\mathbb{E} [\hat f(x)] - f(x)$, variance as $q/n \cdot \sigma^{2}$ with $q \leq p$.
+  Address \emph{bias-variance trade-off}.
+  Bias $\coloneq\mathbb{E} [\hat f(x)] - f(x)$, variance $\coloneq q/n \cdot \sigma^{2}$ ($q \leq p$).
 \end{sectionbox}
 \begin{sectionbox}[Mallows $C_{p}$ statistic]\nospacing{}
   Let $SSE(d)$ be the residual sum of squares.
