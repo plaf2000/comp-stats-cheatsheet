@@ -15,7 +15,7 @@ compile the document easily without needing to install anything locally.
 In case you want to compile locally, here are the instructions provided by [[https://github.com/RomeoV/][RomeoV]].
 
 Although a pdf file is provided, you can build the pdf yourself.
-You need to have a distribution of ~Latex~ aswell as the command-line tool ~minted~ installed (~pip install minted~). Then, clone the repository and the submodule and build it:
+You need to have a distribution of ~Latex~ aswell as the command-line tool ~minted~ installed (~dnf install python3-pygments~). Then, clone the repository and the submodule and build it:
 #+BEGIN_SRC
 $ pdflatex --version
 pdfTeX 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) [...]
