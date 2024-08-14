@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build PDF
-        run: latexmk ./formulary.tex -shell-escape
+        run: pdflatex ./formulary.tex -shell-escape
       - name: Commit PDF
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
