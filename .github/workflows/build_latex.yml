@@ -9,14 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    container:
-      image: ghcr.io/moderncv/debian-texlive-docker:main
     steps:
       - name: Install git and pygmentize
         run: |
           apt update
-          apt install -y python3-pygments
-          apt install -y git-core
+          apt install -y python3-pygments git texlive-full
+          apt install -y git
+          apt install 
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build PDF
