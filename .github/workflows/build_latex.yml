@@ -15,7 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build PDF
-        run: pdflatex -shell-escape -interaction=nonstopmode ./formulary.tex
+        run: |
+          pdflatex -shell-escape -interaction=nonstopmode ./formulary.tex \
+          if [ -f formulary.pdf ]; then \
+            exit 0 \
+          else \
+            exit 1 \
+          fi \
       - name: Commit PDF
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
