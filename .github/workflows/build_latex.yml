@@ -3,6 +3,8 @@ name: "Build PDF"
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.tex'
 
 jobs:
   build:
