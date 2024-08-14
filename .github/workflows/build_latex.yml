@@ -12,10 +12,8 @@ jobs:
     steps:
       - name: Install git and pygmentize
         run: |
-          apt update
-          apt install -y python3-pygments git texlive-full
-          apt install -y git
-          apt install 
+          sudo apt update
+          sudo apt install -y python3-pygments git texlive-full
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build PDF
