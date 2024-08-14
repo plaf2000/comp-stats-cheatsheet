@@ -10,7 +10,7 @@ Then Bayes risk for the 0-1-loss is $\mathbb{P}[\mathcal{C}_{\textrm Bayes}(X_{\
   This results in $\hat \delta_j(x) = (x-\hat{\mu}_j/2)^{\top}\Sigma^{-1}\hat{\mu}_j+\log(\hat p_j)$ with linear (in $x$) decision boundaries $\hat{\delta}_j(x) = \hat \delta_{j'}(x)$ and $\mathcal{C}(x) = \argmax_j \hat \delta_j(x)$.
 
   \textbf{QDA: } Now we assume different $\Sigma_j$ for each class and obtain quadratic decision boundaries $\hat{\delta}_j(x) = -\log(\det(\hat\Sigma_j))/2 - (x-\hat{\mu}_j)^{\top}\hat{\Sigma}_j^{-1}(x-\hat{\mu}_j)/2 + \log(\hat p_j)$.
-  The price: $J\cdot p(p+1)/2$ parameters (for all $\Sigma_j$) vs. $p(p+1)/2$ (symmetry of $\Sigma$) for a single $\Sigma$ ($\mu$ ($J-p$) and priors ($J-1$) is the same),
+  The price: $J\cdot p(p+1)/2$ parameters (for all $\Sigma_j$) vs. $p(p+1)/2$ (symmetry of $\Sigma$) for a single $\Sigma$ ($\mu$ ($J\cdot p$) and priors ($J-1$) are the same),
     \begin{mintlinebox}{R}
     require(MASS)
     class_lda = lda(x=df[, c("x1", "x2")], grouping=df[, "y"])
