@@ -47,7 +47,7 @@
   An individual t-test for $H_{0,j}$ gives the effect of $\beta_{j}$ after subtracting the linear effect of all $\beta_{i\neq j}$.
   Note that in \verb!summary.lm!, the term \emph{Std. Error} is $\sqrt{\hat \sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}} = \sqrt{\hat{Var}(\hat \beta_{j})}$. Finally, we can also build a confidence interval using $\hat \beta_{j} \pm \sqrt{\hat \sigma^{2}{{(X^{\top}X)}^{-1}_{jj}}} \cdot t_{n-p;1-\alpha/2}$.
 \begin{mintlinebox}{R}
-  confint(fit,level=0.95) # predict.lm(fit, ndata, interval=)
+  confint(fit,level=0.95)
 \end{mintlinebox}
 \end{sectionbox}
 
@@ -139,3 +139,8 @@
   \end{mintlinebox}
 
 \end{sectionbox}
+\begin{mintlinebox}{R}
+ predict.lm(fit, newdata, interval=..)
+ poly(formula, degree=d) # polynomial fits of the data in the predictive variables
+up to degree d
+\end{mintlinebox}

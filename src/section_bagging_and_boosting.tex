@@ -1,4 +1,4 @@
-\section{Bagging and Boosting}\label{sec:bagging_and_boosting}
+\section{ Bagging and Boosting}\label{sec:bagging_and_boosting}
 \begin{sectionbox}[Bagging and Subbagging]\nospacing{}
   \textbf{B}ootstrap \textbf{agg}regat\textbf{ing} (bagging) (mostly on trees), uses $\hat g(\cdot): \mathbb{R}^{p}\to \mathbb{R}$ and ensembles them (which comes at the loss of interpretability).
   \begin{enumeratenosep}[label=\roman*]
@@ -30,6 +30,7 @@
     \item $\text{P}[>|t|]$: large ($>0.05)$ $\rightarrow$ $\beta_j \approx 0$ $\rightarrow$ $\beta_j$ not relevent; small $\rightarrow$ $\beta_j!=0$ $\rightarrow$ $\beta_j$ relevant \& reject $H_{j,0}$ (R: \texttt{pt(..)})
   \end{enumeratenosep}
   \begin{mintlinebox}{R}
-    print(..., digits=...)
+    print(.., digits=..); table(df$Class, y.pred); residuals(..)
+    factor(Class) # perform classification; optim(..)
   \end{mintlinebox}
 \end{notebox}

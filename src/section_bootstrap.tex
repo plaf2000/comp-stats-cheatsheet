@@ -29,7 +29,7 @@ Efron's \emph{parametric} and \emph{nonparametric bootstrap} can be described as
 \begin{sectionbox}[Bootstrap confidence intervals]\nospacing{}
   Given bootstrap consistence, we can compute confidence intervals: 
   \begin{enumeratenosep}[label=\roman*]
-    \item quantile: $ [q_{\hat{\Theta}^{\ast}}(\alpha/2), q_{\hat{\Theta}^{\ast}}(1-\alpha/2)]  $
+    \item quantile / quantile: $ [q_{\hat{\Theta}^{\ast}}(\alpha/2), q_{\hat{\Theta}^{\ast}}(1-\alpha/2)]  $
     \item rev. quantile: $ [\hat{\Theta} - q_{\hat{\Theta}^{\ast}-\hat{\Theta}}(1-\alpha/2), \hat{\Theta} - q_{\hat{\Theta}^{\ast}-\hat{\Theta}}(\alpha/2)]   $
     \item normal: $2\hat{\Theta}-\overline{\hat{\Theta}^*} \pm q_X(1-\alpha/2)\cdot \hat{sd}(\hat{\Theta})$ \\ ($X \sim \mathcal{N}(0,1)$; corrects for bias $\hat{\Theta} - \hat{\Theta}^{\ast}$) 
   \end{enumeratenosep}
@@ -53,13 +53,13 @@ Efron's \emph{parametric} and \emph{nonparametric bootstrap} can be described as
     # boogg.s = sample(boogg, N, replace=T) # NP
     boot.est[i] = quantile(boogg.s, probs=0.75)
   }; a = 0.05
-  # Quantile
+  # Quantile / Percentile
   quantile(boot.est, probs=c(a/2, 1-a/2))
   # Normal
   mean.est = mean(boot.est)
   sd.hat = sqrt(1/(R-1)*sum((boot.est - mean.est)^2))
   2*est-mean.est + c(-1,1)*qnorm(1-a/2)*sd.hat
-  # Reverse quantile
+  # Reverse quantile / Basic quantile
   est - quantile(boot.est-est, probs=c(1-a/2, a/2))
 \end{mintlinebox}
 

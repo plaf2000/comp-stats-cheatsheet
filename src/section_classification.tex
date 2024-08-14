@@ -40,3 +40,9 @@ Then Bayes risk for the 0-1-loss is $\mathbb{P}[\mathcal{C}_{\textrm Bayes}(X_{\
     \item Exploiting ``ordered'' classes with proportional odds
   \end{enumeratenosep}
 \end{notebox}
+\begin{notebox}[Manually Calculating Predicted Class]\nospacing{}
+    \begin{enumeratenosep}[label=\roman*]
+    \item Predict class for $x$: $\argmin_{k\in[1,J]}\sum_{j=1}^J L(j,k)\cdot \pi_j(x)$
+    \item E.g loss for predicting class $c: \sum_{j=1}^J L(j,c)\cdot \pi_j(x)$
+  \end{enumeratenosep}
+\end{notebox}
