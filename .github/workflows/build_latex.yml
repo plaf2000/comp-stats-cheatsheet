@@ -13,7 +13,7 @@ jobs:
       image: ghcr.io/moderncv/debian-texlive-docker:main
     steps:
       - name: Install git and pygmentize
-        run: apt update && apt install -y git-all python3-pygments
+        run: apt update && apt install -y usrmerge git-all python3-pygments
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Build PDF
