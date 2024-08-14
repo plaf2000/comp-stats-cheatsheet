@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Build PDF
         run: |
-          pdflatex -shell-escape -interaction=nonstopmode ./formulary.tex 
+          set +e
+          pdflatex -shell-escape -interaction=nonstopmode ./formulary.tex
           if [ -f formulary.pdf ]; then 
             exit 0 
           else 
