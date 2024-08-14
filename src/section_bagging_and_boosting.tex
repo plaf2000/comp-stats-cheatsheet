@@ -12,7 +12,7 @@
   For \textbf{Sub}sample \textbf{agg}regat\textbf{ing} (Subbagging), we draw $(X_{1}^{\ast}, Y_{1}^{\ast}), \dots, (X_{m}^{\ast}, Y_{m}^{\ast})$ without replacement (e.g. with $m = \lfloor n/2\rfloor$), which can be cheaper overall and is equivalent to Bagging in some simple settings.
 \end{sectionbox}
 
-\begin{sectionbox}[$L_{2}$Boosting]\nospacing{}
+\begin{sectionbox}[$L_{2}$-Boosting]\nospacing{}
   Similar to Bagging, iterates on a ``base-learner'' by continually adding a fit on the residuals.
   \begin{enumeratenosep}[label=\roman*]
     \item Get first fit $\hat{g}_{1}(\cdot)$ by fitting on the full data. Compute residuals $U_{i} = Y_{i} - \hat{g}_{1}(X_{i})$ and let $\hat{f}_{1}(\cdot) = \nu \hat{g}_{1}(\cdot)$ with $0 < \nu \leq 1$ (typically $\nu = 0.1$).
