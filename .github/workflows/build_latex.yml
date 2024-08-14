@@ -30,3 +30,4 @@ jobs:
         with:
           commit_message: 'Build PDF'
           commit_author: 'Actions Bot <actions@github.com>'
+          file_pattern: 'formulary.pdf'
