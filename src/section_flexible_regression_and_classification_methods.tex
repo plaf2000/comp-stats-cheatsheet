@@ -31,32 +31,23 @@ We fight the \emph{curse of dimensionality} by making some structural assumption
   \end{mintlinebox}
 \end{sectionbox}
 
-\subsection{Multivariate adaptive regression splines}%
-\label{sub:multivariate_adaptive_regression_splines}
-\begin{sectionbox}\nospacing{}
-  $g(\mathbf{x}) = \mu + \sum_{m=1}^{M}\beta_m h_m(\mathbf{x}) = \sum_{m=0}^{M}\beta_m h_m(\mathbf{x}) $
-  Find $h \in \mathcal{M}$ functions by foward selection and pruning:
+% \subsection{Multivariate adaptive regression splines}%
+% \label{sub:multivariate_adaptive_regression_splines}
+% \begin{sectionbox}\nospacing{}
+%   $g(\mathbf{x}) = \mu + \sum_{m=1}^{M}\beta_m h_m(\mathbf{x}) = \sum_{m=0}^{M}\beta_m h_m(\mathbf{x}) $
+%   Find $h \in \mathcal{M}$ functions by foward selection and pruning:
 
-  \begin{enumeratenosep}[label=\roman*]
-    \item Initialize $\mathcal{M} = \{ h_0 = 1\}, \beta_0 = \overline{Y}$
-    \item For $r=1,2,..$: Find best pair (most reduction of RSS) $h_{2r-1}=h_l(\cdot)(x_j-x_{i,j})_{+}, h_{2r}=h_l(\cdot)(x_{i,j}-x_j)_{+}$, where $h_l \in \mathcal{M}$ does not already depend on $x_j$. Estimate $\beta_{2r-1}, \beta_{2r}$ by LS. Add $h_{2r-1}, h_{2r}$ to $\mathcal{M}$.
-    \item Repeat until $\mathcal{M}$ large enough. Prune by repeatedly removing one function from pairs $h_{2r-1}, h_{2r}$ (least increase in RSS). Stop when GCV score is optimized.
-  \end{enumeratenosep}
-  \begin{mintlinebox}{R}
-    require("earth"); 
-    fit <- earth(formula=y~.,data=data, degree=2)
-    plotmo(fit, degree2=FALSE, caption="main effects")
-  \end{mintlinebox}
-\end{sectionbox}	
-
-\subsection{Neural Networks}%
-\label{sub:neural_networks}
-\begin{sectionbox}\nospacing{}
-  $g(\mathbf{x})_k = f_0(\alpha_k + \sum_{h=1}^{q}w_{hk}\sigma(\tilde{\alpha_h} + \sum_{j=1}^{p}\tilde{w}_{jh}x_j)) \forall k=1..J$, $q$ hidden nodes, $J$ output dim. Activation $\sigma(t) = \frac{\exp t}{1 + \exp t}$. For regression, $f_0$ identity, for classification $f_0 = \sigma$ and $\mathcal{C}_{NN} = \argmax_{j} g_j(\mathbf{x})$. Many other architectures possible, e.g. including a component directly connecting input to output by linear regression.
-  \begin{mintlinebox}{R}
-    library(nnet); ?nnet ?ppr 
-  \end{mintlinebox}
-\end{sectionbox}
+%   \begin{enumeratenosep}[label=\roman*]
+%     \item Initialize $\mathcal{M} = \{ h_0 = 1\}, \beta_0 = \overline{Y}$
+%     \item For $r=1,2,..$: Find best pair (most reduction of RSS) $h_{2r-1}=h_l(\cdot)(x_j-x_{i,j})_{+}, h_{2r}=h_l(\cdot)(x_{i,j}-x_j)_{+}$, where $h_l \in \mathcal{M}$ does not already depend on $x_j$. Estimate $\beta_{2r-1}, \beta_{2r}$ by LS. Add $h_{2r-1}, h_{2r}$ to $\mathcal{M}$.
+%     \item Repeat until $\mathcal{M}$ large enough. Prune by repeatedly removing one function from pairs $h_{2r-1}, h_{2r}$ (least increase in RSS). Stop when GCV score is optimized.
+%   \end{enumeratenosep}
+%   \begin{mintlinebox}{R}
+%     require("earth"); 
+%     fit <- earth(formula=y~.,data=data, degree=2)
+%     plotmo(fit, degree2=FALSE, caption="main effects")
+%   \end{mintlinebox}
+% \end{sectionbox}	
 
 \subsection{Trees}%
 \label{sub:trees}
