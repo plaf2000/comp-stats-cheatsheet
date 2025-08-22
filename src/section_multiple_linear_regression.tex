@@ -11,6 +11,15 @@
   Estimate $\hat{\sigma}^{2} = \frac{1}{n-p}\sum_{i=1}^{n}(y_i-\hat{\beta}^\top x_i)^{2}$ with $\mathbb{E}[\hat{\sigma}^{2}] = \sigma^{2}$.
 \end{sectionbox}
 
+
+\begin{sectionbox}[Gauss-Markov theorem]\nospacing{}
+    LS estimator $\hat{\beta}$ is the \textbf{Best Linear Unbiased Estimator}, i.e. for any linear unbiased estimator $\Tilde{\beta}$ of $\beta$, $\mathrm{var}({\Tilde{\beta}}) - \mathrm{var}({\hat{\beta}})$ is positive semidefinite.
+\end{sectionbox}
+
+\begin{sectionbox}[Univormly Minimum Variance Unbiased]\nospacing{}
+    Assume $x_i$ are fixed. $\hat{\beta}$ is \textbf{UMVU}, i.e. the best estimator among all unbiased estimators.
+\end{sectionbox}
+
 \begin{notebox}[Assumptions for Linear Model]\nospacing{}
   \begin{enumeratenosep}[label=\roman*]
     \item Linear regression equation is correct, i.e. $\mathbb{E}[\epsilon_{i}]=0\ \forall i$.
@@ -20,6 +29,8 @@
     \item Errors are jointly normally distributed. Else ``Robust Methods''.
   \end{enumeratenosep}
 \end{notebox}
+
+
 
 \begin{notebox}[Moments of least squares estimates]\nospacing{}
   Assume $\vec{Y}=X\vec{\beta} + \epsilon, \mathbb{E}[\vec{\epsilon}]=\vec{0},\ Cov(\vec{\epsilon} \vec{\epsilon}^{\top}) = \sigma^{2}I$ (all assumptions satisfied). Then
@@ -37,6 +48,24 @@
   \end{enumeratenosep}
   Even when normality assumption doesn't hold, central limit theorem is a justification.
 \end{notebox}
+
+\subsection{Regression Theory}\label{subsec:regr_theo}
+\begin{sectionbox}[Weakly Universal Consistency]\nospacing{}
+A sequence of regression function estimates $\{\hat{f_n}\}$ is called weakly universally consistent if it is weakly consistent, i.e. $\lim_{n \to \infty}{\mathbb{E}\left[\int_{\mathbbR^p}{(\hat{f}_n(x) - f^{*}(x)}^2P(dx)\right]} = 0$.
+For any estimation method, we can make the rate of convergence arbitrarily
+slow on some distribution, hence assumptions on $Pr(X,Y)$, minmax approach: $\inf_{\hat{f_n}}\sup_{Pr(X,Y)\in\mathcal{P}}$ of the expectation.
+\end{sectionbox}
+
+\begin{sectionbox}[Empirical Risk Minimization (ERM)]\nospacing{}
+Impose restriction on $f$ when minimizing training error:
+\begin{enumeratenosep}[label=\roman*]
+    \item \textbf{Roughness penalty} Add term $\lambda J(f)$
+    \item \textbf{Dictionary methods} Use functions of the form  $\sum_{k=1}^{K}{{\theta}_k {\phi}_k(\mathbf{x};\mathbf{\eta}_k)}$
+    \item \textbf{Basis function methods}  Same as dict but no $\mathbf{\eta}_k$
+    \item \textbf{Kernel methods and local regression}: $f$ simple in local neighborhoods (e.g. kNN is constant).
+\end{enumeratenosep}
+\end{sectionbox}
+
 
 
 \subsection{Tests and Confidence Regions}\label{subsec:tests_and_confidence_regions}

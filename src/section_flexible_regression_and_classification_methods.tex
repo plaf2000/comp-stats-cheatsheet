@@ -93,19 +93,3 @@ depth <- trunc(log2(max(as.integer(row.names(tree$frame)))))
   rf$mse[ntree] # OOB error; rf$test$mse[ntree]
   tail(rf$err.rate) # cumulative error rate
 \end{mintlinebox}
-
-\subsection{Ridge and Lasso}%
-\label{sub:ridge_and_lasso}
-Trade-off between $||\beta||_1$ and $||\beta||_2$ regularization, i.e. $L(\lambda_1, \lambda_2, \vec{\beta})=||\vec{Y}-X\vec{\beta}||_2^2 + (1-\alpha)/2||\vec{\beta}||_2^2+\alpha||\vec{\beta}||_1$.
-$\alpha=1 \Leftrightarrow \lambda_2=1$ means full $L_2$-regularization, i.e.\ \emph{Ridge}, otherwise \emph{LASSO}.
-Limited parameter size $\rightarrow$ reduced variance
-
-\begin{mintlinebox}{R}
-  ridge <- glmnet(x.train, y.train, lambda=100, alpha=1)
-  ridge$beta
-  ridge.cv <- cv.glmnet(x.train, y.train, lambda=grid.lambda, alpha=0, type.measure="mse")
-  mean((predict(ridge.cv, newx=x.test, s="lambda.min") - y.test)^2)
-  lasso.cv <- cv.glmnet(x.train, y.train, lambda=grid.lambda, alpha=1, type.measure="mse")
-  mean((predict(lasso.cv, newx=x.test, s="lambda.min") - y.test)^2) 
-  length(which(beta[2:..]!=0) # num non-zero predictors
-\end{mintlinebox}
