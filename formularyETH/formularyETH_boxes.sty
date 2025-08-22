@@ -37,9 +37,9 @@
     bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable,
-        %pad at break = 1mm
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable,
+    pad at break = 1mm
 }
 
 \newtcolorbox{emphbox}[1][]{
@@ -59,8 +59,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+        breakable
 }
 
 \newtcolorbox{defnbox}[1][]{
@@ -80,7 +80,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 \newtcolorbox{descriptionbox}[1][]{
@@ -121,7 +122,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 \newtcolorbox{lemmabox}[1][]{
@@ -141,8 +143,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 \newtcolorbox{formulabox}[1][]{
@@ -162,8 +164,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 
@@ -185,8 +187,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 \newtcolorbox{postbox}[1][]{
@@ -206,8 +208,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
-        %breakable
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
 }
 
 
@@ -333,7 +335,8 @@
         bottom=3pt,
     left=2pt,
     right=2pt,
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,
+    breakable
     %\ifmulticols
     %   leftright skip=0.02\textwidth,
     %\fi
@@ -1162,7 +1165,7 @@ format=\arabic]{codeboxinput}{s o o m m}{
         escapeinside=||,
         #2
     },
-    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,      %breakable,A
+    leftright skip=\ifmulticols 0pt\else 3pt\relax\fi,      breakable%,A
     #3
         %beforeafter skip = 0.4pt,      % skip before and after box
 }
