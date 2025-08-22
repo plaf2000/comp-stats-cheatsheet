@@ -64,3 +64,11 @@ $\hat{f} = \min_{f\in \mathcal{H}_K}\frac1n\sum^n_{i=1}{L(y_i,f(x_i)) + \lambda 
 E.g. squared loss regression: $\hat{\alpha} = \argmin_{\alpha}{\frac1n ||\mathbf{y} - \mathbf{K\alpha}||^2 + \mathbf{\lambda\alpha}^\top \mathbf{K\alpha}} = (\mathbf{K} + n\mathbf{\lambda I})^{-1}\mathbf{y}$
 
 \end{sectionbox}
+\begin{sectionbox}[SVM]\nospacing{}
+$\min_{\mathbf{w}} \sum_{i=1}^{n} L(y_i, f(x_i)) + \frac{1}{2C}||\mathbf{w}\|^2$ with $f(\mathbf{x}) = \mathbf{w}^\top\mathbf{x} + b$ and hinge loss $L(y,f) = (1-yf)_+$ with $(u)_+ = max(u,0)$. Kernel SVM solution is of the form $\hat{\beta}_0 + \hat{f}(\mathbf{x}) = \hat{\beta}_0 + \sum_{i=1}^n{\hat\alpha_i}K(\mathbf{x},\mathbf{x}_i)$
+\begin{mintlinebox}{R}
+    require(e1071)
+    tune.out <- tune(svm,Y~., data=dat, kernel="radial", ranges=list(cost=c(...), gamma=c(...)))
+    summary (tune.out)
+  \end{mintlinebox}
+\end{sectionbox}
