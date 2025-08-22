@@ -155,9 +155,7 @@ Impose restriction on $f$ when minimizing training error:
 \end{sectionbox}
 \begin{sectionbox}[Forwards and backwards selection]\nospacing{}
   \textbf{Forward selection:} (i) Start with empty model. (ii) (Greedily) Keep adding variable that reduces the residual sum of squares the most. (iii) When done, pick submodel which minimizes $C_{p}$.
-
-  \textbf{Backward selection:} (i) Start with full model. (ii) (Greedily) Keep excluding predictor that increases the residual sum of squares the least. (iii) When done, pick submodel which minimizes $C_{p}$.
-  Backwards selection typically better but more expensive. When $p \geq n$, use forward selection.
+  \textbf{Backward selection:} (i) Start with full model. (ii) (Greedily) Keep excluding predictor that increases the residual sum of squares the least. (iii) When done, pick submodel which minimizes $C_{p}$. Backwards selection typically better but more expensive. When $p \geq n$, use forward selection.
   Both methods prone to overfitting --- p-values (and similar values) are \emph{not} valid anymore and effects look too significant.
   \begin{mintlinebox}{R}
     # Backward / forward selection

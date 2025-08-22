@@ -1,12 +1,10 @@
 \section{\Large Flexible regression and classification methods}\label{sec:flexible_regression_and_classification_methods}
-We fight the \emph{curse of dimensionality} by making some structural assumptions (although staying with methods $g(\cdot): \mathbb{R}^p \to \mathbb{R}$ of nonparametric nature).
 \subsection{Additive models}%
 \label{sub:additive_models}
 \begin{sectionbox}\nospacing{}
   Decompose multivariate function as $g_{\textrm add}: \mathbb{R}^p\to\mathbb{R}, x\mapsto \mu + \sum_{j=1}^pg_j(x_j)$ with $g_j(\cdot): \mathbb{R}\to\mathbb{R}$, $\mathbb{E}[g_j(X_j)]=0$.
   The zero-mean requirement for each $g_j(\cdot)$ makes the problem well posed.
-  This approach is a generalization of linear models, and similarly can not model interaction terms $g_{j,k}(x_j, x_k)$.
-  Due to the way they are constructed, additive linear models \emph{avoid the curse of dimensionality}.
+  This approach is a generalization of linear models, and similarly can not model interaction terms $g_{j,k}(x_j, x_k)$. \emph{Avoid the curse of dimensionality} by construction.
 \end{sectionbox}
 \begin{sectionbox}\nospacing{}
   To fit a model, let $\mathcal{S}_j$ be a smoothing technique (e.g. \emph{Nadaraya-Watson kernel estimators}).

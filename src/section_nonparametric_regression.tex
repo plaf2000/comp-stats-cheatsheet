@@ -65,12 +65,10 @@ Nonparametric regression with \emph{one} predictor variable, i.e. $Y_{i} = m(x_{
 
 %\subsection{}\label{subsec:smoothing_splines_and_penalized_regression}
 \begin{sectionbox}[Smoothing splines and penalized regression]\nospacing{}
-  High-order polynomials do not work, so splines are used. We discuss splines \emph{without} having to specify the knots.
+ Splines \emph{without} having to specify knots:
   Find $\argmin_{m \in C^{0}(\mathbb{R})} \sum_{i=1}^{n}(Y_{i} - m(x_{i}))^{2} + \lambda \int_{\mathbb{R}}m''(z)^{2} dz$.
-  Note that the minimizer is \emph{finite dimensional} --- it is a cubic spline that can be computed using a set of basis functions $m_{\lambda}(x) = \sum_{j=1}^{n}\beta_{j}B_{j}(x)$ or $||\vec{Y} - B\vec{\beta}||^{2}+\lambda \vec{\beta}^{\top}\Omega\vec{\beta} \Rightarrow \hat{\vec{\beta}} = {(B^{\top}B + \lambda\Omega)}^{-1}B^{\top}\vec{Y}$.
+  Minimizer is \emph{finite dimensional} --- it is a cubic spline that can be computed using a set of basis functions $m_{\lambda}(x) = \sum_{j=1}^{n}\beta_{j}B_{j}(x)$ or $||\vec{Y} - B\vec{\beta}||^{2}+\lambda \vec{\beta}^{\top}\Omega\vec{\beta} \Rightarrow \hat{\vec{\beta}} = {(B^{\top}B + \lambda\Omega)}^{-1}B^{\top}\vec{Y}$.
   Choose $\lambda$ on the scale of $df = \mathbf{tr}(\mathcal{S}_{\lambda})$.
-  Note that this is Ridge-type regression, which saves us from being overparametrized ($n$ points, $n$ parameters).
-  In the exam, this is \emph{not} considered ``standard'' least squares.
   \begin{mintlinebox}{R}
     fit.ss = smooth.spline(x, y, df=df) 
     ss.preds = predict(fit.ss, newdata=x)$y
