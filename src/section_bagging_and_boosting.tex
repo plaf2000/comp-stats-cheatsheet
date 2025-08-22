@@ -14,6 +14,21 @@
 
 \begin{sectionbox}[AdaBoost.M1]\nospacing{}
 
+  \begin{enumeratenosep}[label=\roman*]
+\item Initialize the weights $w_{i}=1 / n, i=1, \ldots, n$.
+\item For $m=1, \ldots, M$ :
+\begin{enumeratenosep}[label=\alph*)]
+    \item Fit a weak classifier $G_{m}(\boldsymbol{x})$ to training data using $w_{i}$'s.
+\item Compute
+$
+\operatorname{err}_{m}=\frac{\sum_{i=1}^{n} w_{i} I\left\{y_{i} \neq G_{m}\left(\boldsymbol{x}_{i}\right)\right\}}{\sum_{i=1}^{n} w_{i}}
+$
+\item Compute $\alpha_{m}=\log \left\{\left(1-\operatorname{err}_{m}\right) / \operatorname{err}_{m}\right\}$.
+\item Set $w_{i} \leftarrow w_{i} \times \exp \left[\alpha_{m} I\left\{y_{i} \neq G_{m}\left(\boldsymbol{x}_{i}\right)\right\}\right], i=1, \ldots, n$.
+\end{enumeratenosep}
+
+\item Output $G(\boldsymbol{x})=\operatorname{sign}\left\{\sum_{m=1}^{M} \alpha_{m} G_{m}(\boldsymbol{x})\right\}$.
+\end{enumeratenosep}
 \end{sectionbox}
 \begin{notebox}[Misc]\nospacing{}
   \begin{enumeratenosep}[label=\roman*]
